@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.AddressDao">
+
+
+	<!-- 查询单条信息 -->
+	<select id="queryAddress" resultType="com.qudi.bean.Address">
+		select
+		a.id,a.name,a.address,a.mobile,label,a.status,a.detailed_address
+		detailedAddress,a.initialization_time initializationTime,a.update_time
+		updateTime from qd_address a left join qd_user2_address b on
+		a.id=b.address_id where
+		a.id=#{id}
+	</select>
+
+	<!-- 查询用户地址集合 -->
+	<select id="queryAddressList" resultType="com.qudi.bean.Address">
+		select
+		a.id,a.name,a.address,a.mobile,label,a.status,a.detailed_address
+		detailedAddress,a.initialization_time initializationTime,a.update_time
+		updateTime from qd_adress a left join qd_user2_address b on
+		a.id=b.address_id where
+		b.user_id=#{userId}
+	</select>
+
+	<!-- 添加地址 -->
+	<insert id="insertAddress" parameterType="com.qudi.bean.Address"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into qd_address
+		(name,address,mobile,label,detailed_address)
+		values(#{name},#{address},#{mobile},#{label},#{detailedAddress})
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+
+	<update id="updateAddress" parameterType="com.qudi.bean.Address">
+		update qd_address
+		<set>
+			<if test="name!=null">name=#{name},</if>
+			<if test="address!=null">address=#{address},</if>
+			<if test="mobile!=null">mobile=#{mobile},</if>
+			<if test="label!=null">label=#{label},</if>
+			<if test="detailedAddress!=null">detailed_address=#{detailedAddress},</if>
+			<if test="updateTime!=null">update_time=#{updateTime},</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 添加用户与地址关系 -->
+	<insert id="insertUser2Address">
+		insert into qd_user2_address
+		(user_id,address_id)values(#{userId},#{addressId})
+	</insert>
+
+	<!-- 删除地址 -->
+	<delete id="deleteAddress">
+		delete from qd_address where id=#{id}
+	</delete>
+
+
+	<!-- 删除用户与地址的关系 -->
+	<delete id="deleteUser2Address">
+		delete from qd_user2_address where address_id=#{addressId}
+	</delete>
+
+
+</mapper>

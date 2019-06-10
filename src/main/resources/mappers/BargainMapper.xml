@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.BargainDao">
+
+	<resultMap type="com.qudi.bean.Bargain" id="bargain">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="commodity_id" property="commodityId" />
+		<result column="price" property="price" />
+		<result column="time" property="time" />
+		<result column="quantity" property="quantity" />
+		<result column="unit_price" property="unitPrice" />
+	</resultMap>
+
+	<!-- 添加议价 -->
+	<insert id="insertBargain">
+		insert into qd_bargain
+		(user_id,commodity_id,quantity
+		<if test="price>0">,price</if>
+		<if test="unitPrice>0">,unit_price</if>
+		)values(#{userId},#{commodityId},#{quantity}
+
+		<if test="price>0">,#{price}</if>
+		<if test="unitPrice>0">,#{unitPrice}</if>
+		)
+	</insert>
+
+	<!-- 删除议价 -->
+	<delete id="deleteBargain">
+		delete from qd_bargain where id=#{id}
+	</delete>
+
+	<!-- 用户查询议价 -->
+	<select id="selectBargainUser" resultMap="bargain">
+		select id,user_id
+		userId,commodity_id commodityId,price,time,unit_price
+		unitPrice,quantity
+		from qd_bargain where
+		user_id=#{userId}
+	</select>
+
+	<!-- 商品所有议价 -->
+	<select id="selectBargainCommodity" resultMap="bargain">select id,user_id
+		userId,commodity_id commodityId,price,time,unit_price
+		unitPrice,quantity from qd_bargain where
+		commodity_id=#{commodityId}
+	</select>
+
+
+	<!-- 修改议价 -->
+	<update id="updateBargain">
+		update qd_bargain
+		<set>
+			<if test="unitPrice>0">unit_price=#{unitPrice},</if>
+			<if test="quantity>0">quantity=#{quantity}</if>
+			<if test="price>0">price=#{price}</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.CommentDao">
+
+
+	<resultMap type="com.qudi.bean.Comment" id="comment">
+		<id column="id" property="id" />
+		<result column="content" property="content" />
+		<result column="give_like" property="giveLike" />
+		<result column="initialization_time"
+			property="initializationTime" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="commentId">
+		<result column="comment_id" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="userCommentId">
+		<result column="comment_id" />
+	</resultMap>
+
+	<resultMap type="com.qudi.bean.CommentPicture" id="picture">
+		<id column="id" property="id" />
+		<result column="picture" property="picture" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="pictureId">
+		<result column="picture_id" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="replyId">
+		<result column="reply_id" />
+	</resultMap>
+
+	<resultMap type="com.qudi.bean.Reply" id="replyList">
+		<id column="id" property="id" />
+		<result column="content" property="content" />
+		<result column="time" property="time" />
+	</resultMap>
+
+	<!-- 添加评论 -->
+	<insert id="insertComment" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.qudi.bean.Comment">
+		insert into
+		qd_comment(content)values(#{content})
+	</insert>
+
+	<!-- 添加评论图片 -->
+	<insert id="insertPicture" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.qudi.bean.CommentPicture">
+		insert into qd_comment_picture
+		(picture)values(#{picture})
+	</insert>
+
+	<!-- 添加商品与评论关系 -->
+	<insert id="insertComment2Commodity">
+		insert into
+		qd_comment2_commodity(commodity_id,comment_id)values(#{commodityId},#{commentId})
+	</insert>
+
+	<!-- 修改点赞数 -->
+	<update id="updateGiveLike">
+		update qd_comment set give_like=#{giveLike} where
+		id=#{id}
+	</update>
+
+	<!-- 添加评论与用户的关系 -->
+	<insert id="insertComment2User">
+		insert into
+		qd_user2_comment(user_id,comment_id)values(#{userId},#{commentId})
+	</insert>
+
+
+	<!-- 添加评论与图片的关系 -->
+	<insert id="insertPicture2Comment">insert into
+		qd_comment2_picture(comment_id,picture_id)values(#{commentId},#{pictureId})
+	</insert>
+
+	<!-- 查询单个评论 -->
+	<select id="selectComment" resultMap="comment">
+		select id,comment,give_like
+		giveLike,initialization_time initializationTime
+		from qd_comment where
+		id=#{id}
+	</select>
+
+	<!-- 查询商品下的评论 -->
+	<select id="selectCommentList" resultMap="comment">
+		select
+		id,comment,give_like
+		giveLike,initialization_time
+		initializationTime
+		from qd_comment where
+		id in
+		<foreach collection="idList" item="id" open="(" close=")">#{id}
+		</foreach>
+	</select>
+
+
+	<!-- 查询商品评论id -->
+	<select id="selectCommentId" resultMap="commentId">
+		select comment_id from
+		qd_comment2_commodity where
+		commodity_id=#{commodityId}
+	</select>
+
+	<!-- 查询用户的所有评论 -->
+	<select id="selectUserCommentId" resultMap="userCommentId">
+		select comment_id
+		from qd_user2_comment where
+		user_id=#{userId}
+	</select>
+
+	<!-- 查询评论图片 -->
+	<select id="selectPicture" resultMap="picture">
+		select id,picture from qd_comment_picture where id in
+		<foreach collection="idList" item="id" open="(" close=")">#{id}
+		</foreach>
+	</select>
+
+	<!-- 查询图片id -->
+	<select id="selectPictureId" resultMap="pictureId">
+		select picture_id from
+		qd_comment2_picture where
+		comment_id=#{commentId}
+	</select>
+
+	<!-- 添加回复 -->
+	<insert id="insertReply" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.qudi.bean.Reply">
+		insert into
+		qd_reply(content)values(#{content})
+	</insert>
+
+	<!-- 添加用户与回复关系 -->
+	<insert id="insertUser2Reply">
+		insert into
+		qd_user2_reply(reply_id,user_id)values(#{replyId},#{userId})
+	</insert>
+
+	<!-- 添加评论与回复关系 -->
+	<insert id="insertComment2Reply">
+		insert into
+		qd_comment2_reply(comment_id,reply_id)values(#{commentId},#{replyId})
+	</insert>
+
+	<!-- 查询评论回复 -->
+	<select id="selectReply" resultMap="replyList">
+		select id,content,time from qd_reply where id in
+		<foreach collection="idList" item="id" open="(" close=")">#{id}
+		</foreach>
+	</select>
+
+	<!-- 查询回复id -->
+	<select id="selectReplyId" resultMap="replyId">
+		select reply_id from
+		qd_comment2_reply where
+		comment_id=#{commentId}
+	</select>
+
+
+
+</mapper>

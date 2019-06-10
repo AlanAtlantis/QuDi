@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.CommodityDao">
+
+	<resultMap type="com.qudi.bean.Price" id="priceList">
+		<id column="id" property="id" />
+		<result column="section_min" property="sectionMin" />
+		<result column="section_max" property="sectionMax" />
+		<result column="price" property="price" />
+		<result column="initialization_time"
+			property="initializationTime" />
+		<result column="update_time" property="updateTime" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="priceIdList">
+		<result column="price_id" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="userCommodityIdList">
+		<result column="commodity_id" />
+	</resultMap>
+
+	<resultMap type="java.lang.Integer" id="specificationsIdList">
+		<result column="specifications_id" />
+	</resultMap>
+
+	<resultMap type="com.qudi.bean.Specifications"
+		id="SpecificationsList">
+		<id column="id" property="id" />
+		<result column="color" property="color" />
+		<result column="model" property="model" />
+		<result column="picture" property="picture" />
+	</resultMap>
+
+	<resultMap type="com.qudi.bean.Commodity" id="commodtiyList">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="commodity_type" property="commodityType" />
+		<result column="describe" property="describe" />
+		<result column="quantity" property="quantity" />
+		<result column="initialization_time"
+			property="initializationTime" />
+		<result column="update_time" property="updateTime" />
+	</resultMap>
+
+	<!-- 查询单个商品 -->
+	<select id="queryCommodity" resultType="com.qudi.bean.Commodity">
+		select
+		id,name,commodity_type
+		commodityType,`describe`,quantity,initialization_time
+		initializationTime,update_time updateTime from qd_commodity where
+		id=#{id}
+	</select>
+
+	<!-- 查询指定的商品价格 -->
+	<select id="queryPrice" resultMap="priceList">
+		select id,section_min
+		sectionMin,section_max
+		sectionMax,price,initialization_time
+		initializationTime,update_time
+		updateTime from qd_price where
+		id in
+		<foreach collection="idList" item="id" open="(" close=")" separator=",">#{id}
+		</foreach>
+
+	</select>
+
+	<!-- 查询商品与价格的关系 -->
+	<select id="queryCommodity2Price" resultMap="priceIdList">
+		select price_id
+		from
+		qd_commodity2_price where commodity_id=#{id}
+	</select>
+
+	<!-- 查询商品的规格 -->
+	<select id="querySpecificationsList"
+		resultMap="SpecificationsList">
+		select id,color,model,picture from qd_specifications
+		where id in
+		<foreach collection="idList" item="id" open="(" close=")" separator=",">#{id}
+		</foreach>
+	</select>
+
+	<!-- 查询商品规格与商品关系 -->
+	<select id="querySpecificationsIdList"
+		resultMap="specificationsIdList">
+		select specifications_id from qd_commodity2_specifications
+		where
+		commodity_id=#{id}
+	</select>
+
+	<!-- 添加商品记录并返回id -->
+	<insert id="insertCommodity" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.qudi.bean.Commodity">
+		insert into qd_commodity
+		(`name`,`describe`,commodity_type,quantity)values(#{name},#{describe},#{commodityType},#{quantity})
+	</insert>
+
+	<!-- 修改商品 -->
+	<update id="updateCommdity">
+		update qd_commodity
+		<set>
+			<if test="name!=null">name=#{name},</if>
+			<if test="describe!=null">describe=#{describe},</if>
+			<if test="commodityType!=null">commodity_type=#{commodityType},</if>
+			<if test="quantity!=0">quantity=#{quantity},</if>
+			<if test="updateTime!=null">update_time=#{updateTime}</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 删除商品 -->
+	<delete id="deleteCommodity">
+		delete from qd_commodity where id=#{id}
+	</delete>
+
+	<!-- 添加商品与用户关系 -->
+	<insert id="insertQdUser2Commodity">
+		insert into qd_user2_commodity
+		(user_id,commodity_id)values(#{userId},#{commodityId})
+	</insert>
+
+	<!-- 添加商品价格 -->
+	<insert id="insertQdPrice" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.qudi.bean.Price">
+		insert into qd_price
+		(section_min,section_max,price)values(#{sectionMin},#{sectionMax},#{price})
+	</insert>
+
+	<!--添加商品与价格的关系 -->
+	<insert id="insertQdCommodity2Price">
+		insert into qd_commodity2_price
+		(commodity_id,price_id)values(#{commodityId},#{priceId})
+	</insert>
+
+	<!--添加商品规格 -->
+	<insert id="insertQdSpecifications" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.qudi.bean.Specifications">
+		insert into qd_specifications
+		(color,model,picture)values(#{color},#{model},#{picture})
+	</insert>
+
+	<!--添加商品与规格的关系 -->
+	<insert id="insertQdCommodity2Specifications">
+		insert into
+		qd_commodity2_specifications(commodity_id,specifications_id)values(#{commodityId},#{specificationsId})
+	</insert>
+
+	<!--修改商品价格 -->
+	<update id="updatePrice">
+		update qd_price
+		<set>
+			<if test="sectionMin!=0">section_min=#{sectionMin},</if>
+			<if test="sectionMax!=0">section_max=#{sectionMax},</if>
+			<if test="price!=0">price=#{price},</if>
+			<if test="updateTime!=null">update_time=#{updateTime},</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!--修改商品规格 -->
+	<update id="updateQdSpecifications">
+		update qd_specifications
+		<set>
+			<if test="color!=null">color=#{color},</if>
+			<if test="model!=null">model=#{model},</if>
+			<if test="picture!=null">picture=#{picture},</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!--删除商品与用户关系 -->
+	<delete id="deleteQdUser2Commodity">
+		delete from qd_user2_commodity where
+		commodity_id=#{commodityId}
+	</delete>
+
+	<!--删除商品价格 -->
+	<delete id="deleteQdPrice">
+		delete from qd_price where id in
+		<foreach collection="idList" item="id" open="(" close=")">#{id}
+		</foreach>
+	</delete>
+
+	<!--删除商品价格关系 -->
+	<delete id="deleteQdCommodity2Price">
+		delete from qd_commodity2_price where
+		commodity_id=#{commodityId}
+		<if test="commodityId!=0">commodity_id=#{commodityId}</if>
+		<if test="priceId!=0">priceId=#{priceId}</if>
+	</delete>
+
+	<!--删除商品规格 -->
+	<delete id="deleteQdSpecifications">
+		delete from qd_specifications where
+		id in
+		<foreach collection="idList" item="id" open="(" close=")">#{id}
+		</foreach>
+	</delete>
+
+	<!--删除商品规格关系 -->
+	<delete id="deleteQdCommodity2Specifications">
+		delete from qd_commodity2_specifications where
+
+		<if test="commodityId!=0">commodity_id=#{commodityId}</if>
+		<if test="specificationsId!=0">specifications_id=#{specificationsId}</if>
+	</delete>
+
+	<!-- 查询用户添加商品集合 -->
+	<select id="queryUserCommodtiyList" resultMap="commodtiyList">
+		select
+		id,name,commodity_type
+		commodityType,`describe`,quantity,initialization_time
+		initializationTime,update_time updateTime from qd_commodity where
+		id in
+		
+			<foreach collection="idList" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		
+
+	</select>
+
+	<!-- 根据用户id查询用户添加的商品 -->
+	<select id="querUserCommodityId" resultMap="userCommodityIdList">
+		select commodity_id
+		from
+		qd_user2_commodity where user_id=#{userId}
+	</select>
+
+	<!-- 模糊查询商品(通过商品名称或者商品型号查询) -->
+	<select id="queryLikeCommodity" resultMap="commodtiyList">
+		select
+		id,name,commodity_type
+		commodityType,`describe`,quantity,initialization_time
+		initializationTime,update_time updateTime from qd_commodity where name
+		like #{keyword} or commodity_type like #{keyword}
+	</select>
+
+
+
+</mapper>

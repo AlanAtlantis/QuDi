@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.MessageDao">
+
+	<resultMap type="com.qudi.bean.Message" id="listMessage">
+		<id column="id" property="id" />
+		<result column="content" property="content" />
+		<result column="status" property="status" />
+		<result column="addressee_id" property="addresseeId" />
+		<result column="sender_id" property="senderId" />
+		<result column="time_departure" property="timePeparture" />
+	</resultMap>
+
+	<!-- 发送消息 -->
+	<insert id="insertMessage">
+		insert into qd_message
+		(content,status,addressee_id,sender_id)values(#{content},#{status},#{addresseeId},#{senderId})
+	</insert>
+
+	<!-- 删除消息 -->
+	<delete id="deleteMessage">
+		delete from qd_message where id=#{id}
+	</delete>
+
+	<!-- 查看未读消息 -->
+	<select id="queryMessage" resultMap="listMessage">
+		select
+		id,content,status,addressee_id
+		addresseeId,sender_id
+		senderId,time_departure timeDeparture from
+		qd_message where status=1
+		and addressee_id=#{userId}
+	</select>
+
+	<!-- 查看历史消息 -->
+	<select id="queryHistoryMessage" resultMap="listMessage">
+		select
+		id,content,status,addressee_id
+		addresseeId,sender_id
+		senderId,time_departure timeDeparture from
+		qd_message where
+		addressee_id=#{userId}
+	</select>
+
+</mapper>

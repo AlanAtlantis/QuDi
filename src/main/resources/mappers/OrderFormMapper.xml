@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.OrderFormDao">
+
+	<resultMap type="java.lang.Integer" id="orderList">
+		<result column="order_id" />
+	</resultMap>
+
+	<resultMap type="com.qudi.bean.Orderdetail"
+		id="orderdetailList">
+		<id column="id" property="id" />
+		<result column="commodity_id" property="commodityId" />
+		<result column="commodity_num" property="commodityNum" />
+		<result column="order_id" property="orderId" />
+	</resultMap>
+
+	<!-- 查询单个订单 -->
+	<select id="queryOrderForm" resultType="com.qudi.bean.OrderForm">
+		select
+		id,number,order_time orderTime,mode_payment
+		modePayment,shipping_method shippingMethod,invoice_type
+		invoiceType,freight,price,status,quantity_commod
+		quantityCommod,initialization_time initializationTime,update_time
+		updateTime from qd_order_form where id=#{id}
+	</select>
+
+	<!-- 添加订单 -->
+	<insert id="insertOrderForm" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into qd_order_form
+		(number,mode_payment,shipping_method,invoice_type,freight,price,status,quantity_commod)values(#{number},#{modePayment},#{shippingMethod},#{invoiceType},#{freight},#{price},#{status},#{quantity_commod})
+	</insert>
+
+	<!-- 修改订单 -->
+	<update id="updateOrderForm">
+		update qd_order_form
+		<set>
+			<if test="modePayment!=null">mode_payment=#{modePayment}</if>
+			<if test="shippingMethod!=null">shipping_method=#{shippingMethod}</if>
+			<if test="price!=null">price=#{price}</if>
+			<if test="status!=null">status=#{status}</if>
+			<if test="freight!=null">freight=#{freight}</if>
+			<if test="quantityCommod!=null">quantity_commod=#{quantityCommod}</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 删除订单 -->
+	<delete id="deleteOrderForm">
+		delete from qd_order_form where id=#{id}
+	</delete>
+
+	<!-- 查询订单集合 -->
+	<select id="queryOrderFormList">
+		select
+		id,number,order_time orderTime,mode_payment
+		modePayment,shipping_method shippingMethod,invoice_type
+		invoiceType,freight,price,status,quantity_commod
+		quantityCommod,initialization_time initializationTime,update_time
+		updateTime from qd_order_form where id in
+		<foreach collection="idList" item="id" open="(" close=")">#{id}
+		</foreach>
+	</select>
+
+
+	<!-- 根据用户id查询订单 -->
+	<select id="queryIdList" resultMap="orderList">
+		select order_id from
+		qu_user2_order where user_id=#{userId}
+	</select>
+
+	<!-- 添加订单与用户关系 -->
+	<insert id="insertOrderForm2User">
+		insert into
+		qu_user2_order(user_id,order_id,address_id)values(#{userId},#{orderId},#{addressId})
+	</insert>
+
+	<!-- 修改订单地址 -->
+	<update id="updateOrderAddress">
+		update qu_user2_order set address_id=#{addressId}
+		where order_id=#{orderId}
+	</update>
+
+	<!-- 删除订单与用户关系 -->
+	<delete id="deleteOrderForm2User">
+		delete from qu_user2_order where order_id=#{orderId}
+	</delete>
+
+	<!-- 添加订单明细 -->
+	<insert id="insertOrderdetail">
+		insert into qd_orderdetail
+		(order_id,commodity_id,commodity_num)values(#{orderId},#{commodityId},commodityNum)
+	</insert>
+
+	<!-- 删除订单明细 -->
+	<delete id="deleteOrderdetail">
+		delete from qd_orderdetail where order_id=#{id}
+	</delete>
+
+	<!-- 查询订单商品 -->
+	<select id="queryOrderdetail" resultMap="orderdetailList">
+		select id,commodity_id
+		commodityId,commodity_num
+		commodityNum,order_id orderId from
+		qd_orderdetail where
+		order_id=#{orderId}
+	</select>
+
+</mapper>

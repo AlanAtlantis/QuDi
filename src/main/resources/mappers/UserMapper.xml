@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qudi.dao.UserDao">
+
+
+	<select id="queryName" resultType="com.qudi.bean.User">
+
+		select name from qd_user where
+		id=#{id}
+
+	</select>
+
+	<!-- 用户登录 -->
+	<select id="login" resultType="com.qudi.bean.User">
+		select
+		id,name,sex,password,mobile,user_name
+		userName,birthday,head,initialization_time
+		initializationTime,update_time updateTime,name_firm
+		nameFirm,taxpayer_identification_number taxpayerIdentificationNumber
+		from qd_user
+		<where>
+			<if test="userName!=null">user_name=#{userName} and
+				password=#{password}
+			</if>
+			<if test="mobile!=null">mobile=#{mobile}</if>
+		</where>
+	</select>
+
+	<!-- 添加用户 （用户主持） -->
+	<insert id="register" parameterType="com.qudi.bean.User">
+		insert into qd_user
+		(user_name,password,mobile) values(#{userName},#{password},#{mobile})
+	</insert>
+
+	<!--用户信息 修改 -->
+	<update id="updateUserInfo" parameterType="com.qudi.bean.User">
+		update qd_user
+		<set>
+			<if test="name!=null">name=#{name},</if>
+			<if test="sex!=null">sex=#{sex},</if>
+			<if test="password!=null">password=#{password},</if>
+			<if test="mobile!=null">mobile=#{mobile},</if>
+			<if test="userName!=null">userName=#{userName},</if>
+			<if test="birthday!=null">birthday=#{birthday},</if>
+			<if test="head!=null">head=#{head},</if>
+			<if test="updateTime!=null">updateTime=#{updateTime},</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!-- 检查用户名是否存在 -->
+	<select id="checkUserName" resultType="com.qudi.bean.User">
+		select id from qd_user
+		where user_name=#{userName}
+	</select>
+
+	<!-- 检查电话号码是否存在 -->
+	<select id="checkMobile" resultType="com.qudi.bean.User">
+		select id from qd_user
+		where
+		mobile=#{mobile}
+	</select>
+
+
+
+</mapper>
