@@ -521,21 +521,17 @@
 		src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/chart.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/front.js"></script>
-	<script src="${pageContext.request.contextPath}/js/front.js"></script>
 	<script src="${pageContext.request.contextPath}/js/ajaxfileupload.js"></script>
 
 	<!--Core Javascript -->
 
 	<!-- 百度富文本 -->
-	<script type="text/javascript" charset="utf-8"
-		src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.all.min.js">
+	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.all.min.js">
 		
 	</script>
 
-	<script type="text/javascript" charset="utf-8"
-		src="${pageContext.request.contextPath}/thirdparts/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/thirdparts/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 	<script type="text/javascript">
 		var ue = UE.getEditor('goodsDesc');
