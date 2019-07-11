@@ -41,7 +41,6 @@ public class ShopController {
 	@RequestMapping(value = "/addShop", method = RequestMethod.GET)
 	public String addShop(Model model, HttpServletRequest request, @RequestParam("shopName") String shopName) {
 
-		System.out.println("------------" + shopName);
 
 		Shop shop = new Shop();
 
@@ -68,7 +67,6 @@ public class ShopController {
 		shop.setUserId(userId);
 		shop.setShopId(shopId);
 
-		System.out.println("------------" + shop);
 
 		model.addAttribute("message", shopDaoService.updateShop(shop));
 
@@ -102,7 +100,6 @@ public class ShopController {
 	@RequestMapping(value = "/updatePage", method = RequestMethod.GET)
 	public String updatePage(Model model, @RequestParam("shopId") int shopId) {
 
-		System.out.println("------------->>>" + shopId);
 
 		model.addAttribute("shop", shopDaoService.selectShop(shopId));
 		return "updateShop";

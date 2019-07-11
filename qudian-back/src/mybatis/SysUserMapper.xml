@@ -88,4 +88,14 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 查询用户信息方法 -->
+	<select id="userinfo_sysuser" parameterType="int"
+		resultType="java.util.HashMap">
+ 	select
+		id,username,password,phone,dutyparagraph,email,birthday,address,businesslicense,bankcard,createdate,remarks
+	 from sys_user
+		where
+		id=#{id}
+	</select>
 </mapper>

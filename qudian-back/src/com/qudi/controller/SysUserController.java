@@ -52,7 +52,7 @@ public class SysUserController {
 			model.addAttribute("userid",sysuser.getId());
 			model.addAttribute("list", mess.getObject());
 
-			return "userinfo";
+			return "tables";
 		}
 		return "login";
 	}

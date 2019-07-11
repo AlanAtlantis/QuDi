@@ -98,7 +98,6 @@ public class GoodsListContr {
 	public String goodsShelves(@RequestParam("status") int status, @RequestParam("goodsId") int goodsId, Model model,
 			HttpServletRequest request) {
 
-		System.out.println("----------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>.----------------------");
 
 		model.addAttribute("message", goodsListService.goodsShelves(status, goodsId));
 		// 获取用户信息
@@ -123,23 +122,16 @@ public class GoodsListContr {
 	public String updateGoods(GoodsList goodsList, Model model, HttpServletRequest request,
 			@RequestParam("detailsDescribe") String detailsDescribe) {
 
-		System.out.println("-------------------->>>>>detailsDescribe:" + detailsDescribe);
 		model.addAttribute("message", goodsListService.updateGoods(goodsList));
 		// 查询商品描述信息
 		Object object = goodsDetailsDaoService.querydetails(goodsList.getGoodsId()).getObject();
-		System.out.println("------------->>>>>>>>object:" + object);
-		//
 		if (object == null) {
 			goodsDetailsDaoService.addDetails(detailsDescribe, goodsList.getGoodsId());
 		} else {
-			//
 			goodsDetailsDaoService.updatedetails(detailsDescribe, goodsList.getGoodsId());
 		}
-		//
 		SysUser user = (SysUser) request.getSession().getAttribute("user");
-		//
 		int userId = user.getId();
-		// goodsListService.selectGoodsList(userId);
 		model.addAttribute("message", goodsListService.selectGoodsList(userId));
 		return "updataTables";
 	}

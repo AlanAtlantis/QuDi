@@ -28,7 +28,7 @@ public class GoodsCategoryContr {
 	private GoodsCategoryDaoService goodsCategoryDaoService;
 	@Autowired
 	private ShopDaoService shopDaoService;
-
+	                          
 	@RequestMapping(value = "/selectGoodsCategory", method = RequestMethod.GET)
 	public String selectGoodsCategory(Model model, HttpServletRequest request) {
 

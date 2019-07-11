@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 ">
-					<form action="sys/sysuser/register_sysuser" method="get";>
+					<form action="sys/sysuser/register_sysuser" method="get">
 
 						<div class="contact-h-cont">
 							<h3 class="text-center">

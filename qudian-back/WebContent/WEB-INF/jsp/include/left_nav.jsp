@@ -29,12 +29,14 @@
 			<li><a href="sys/goodsList/updateDataList">商品修改</a></li>
 		</ul></li>
 		
-			<li><a href="#theorder" aria-expanded="false" data-toggle="collapse">
+			<li>
+			<a href="#theorder" aria-expanded="false" data-toggle="collapse">
 			<i class="icon-interface-windows"></i>订单管理
 	</a>
 		<ul id="theorder" class="collapse list-unstyled">
 			<li><a href="sys/sysuser/theorder_jump">订单列表</a></li>
-		</ul></li>
+		</ul>
+		</li>
 	
 			<li><a href="#active" aria-expanded="false" data-toggle="collapse">
 			<i class="icon-interface-windows"></i>议价管理
