@@ -1,7 +1,7 @@
-package com.qudi.bean;
+ï»¿package com.qudi.bean;
 
 /**
- * ºóÌ¨µÇÂ¼ĞÅÏ¢
+ * åå°ç™»å½•ä¿¡æ¯
  * 
  * @author AlanAtlantis
  *
@@ -9,33 +9,60 @@ package com.qudi.bean;
 public class SysUser {
 
 	private int id;
-	private int usertype;// ÓÃ»§ÀàĞÍ
-	private String username;// ÓÃ»§Ãû
-	private String password;// ÃÜÂë
-	private int level;// µÈ¼¶
-	private int sex;// ĞÔ±ğ
-	private String phone;// µç»°
-	private String email;// ÓÊÏä
+	private int usertype;// ç”¨æˆ·ç±»å‹
+	private String username;// ç”¨æˆ·å
+	private String password;// å¯†ç 
+	private int level;// ç­‰çº§
+	private int sex;// æ€§åˆ«
+	private String phone;// ç”µè¯
+	private String email;// é‚®ç®±
 	private int notdel;//
-	private String birthday;// ÉúÈÕ
-	private String address;// µØÖ·
-	private String remarks;// ±¸×¢
-	private int status;// ×´Ì¬
-	private String createuser;// ²Ù×÷ÈË
-	private String createdate;// ´´½¨²Ù×÷Ê±¼ä
-	private String updauser;// ĞŞ¸Ä²Ù×÷ÈË
-	private String updadate;// ĞŞ¸Ä²Ù×÷Ê±¼ä
-
+	private String birthday;// ç”Ÿæ—¥
+	private String address;// åœ°å€
+	private String remarks;// å¤‡æ³¨
+	private int status;// çŠ¶æ€
+	private String createuser;// æ“ä½œäºº
+	private String createdate;// åˆ›å»ºæ“ä½œæ—¶é—´
+	private String updauser;// ä¿®æ”¹æ“ä½œäºº
+	private String updadate;// ä¿®æ”¹æ“ä½œæ—¶é—´
+	private int bankcard;// éŠ€è¡Œå¡è™Ÿ
+	private String dutyparagraph;// ç¨…è™Ÿ
+	private String businesslicense;// ç‡Ÿæ¥­æ‰§ç…§
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "SysUser[id=" + id + ",usertype=" + usertype + ",username=" + username + ",password=" + password
-				+ ",level=" + level + ",sex=" + sex + ",phone=" + phone + ",email=" + email + ",notdel=" + notdel
-				+ ",birthday=" + birthday + ",address=" + address + ",remarks=" + remarks + ",status=" + status
-				+ ",createuser=" + createuser + ",createdate=" + createdate + ",updauser=" + updauser + ",updadate="
-				+ updadate + "]";
+		return "SysUser [id=" + id + ", usertype=" + usertype + ", username=" + username + ", password=" + password
+				+ ", level=" + level + ", sex=" + sex + ", phone=" + phone + ", email=" + email + ", notdel=" + notdel
+				+ ", birthday=" + birthday + ", address=" + address + ", remarks=" + remarks + ", status=" + status
+				+ ", createuser=" + createuser + ", createdate=" + createdate + ", updauser=" + updauser + ", updadate="
+				+ updadate + ", bankcard=" + bankcard + ", dutyparagraph=" + dutyparagraph + ", businesslicense="
+				+ businesslicense + "]";
 	}
 
+	public int getBankcard() {
+		return bankcard;
+	}
+
+	public void setBankcard(int bankcard) {
+		this.bankcard = bankcard;
+	}
+
+	public String getDutyparagraph() {
+		return dutyparagraph;
+	}
+
+	public void setDutyparagraph(String dutyparagraph) {
+		this.dutyparagraph = dutyparagraph;
+	}
+
+	public String getBusinesslicense() {
+		return businesslicense;
+	}
+
+	public void setBusinesslicense(String businesslicense) {
+		this.businesslicense = businesslicense;
+	}
+	
 	public int getId() {
 		return id;
 	}

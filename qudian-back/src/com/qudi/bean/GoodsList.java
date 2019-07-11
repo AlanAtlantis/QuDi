@@ -1,23 +1,28 @@
 package com.qudi.bean;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
- * ÉÌÆ·ĞÅÏ¢
+ * ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
+ * 
  * @author AlanAtlantis
  *
  */
 public class GoodsList {
 
 	private int goodsId;//
-	private int categoryId;// ÉÌÆ··ÖÀàid
-	private String goodsName;// ÉÌÆ·Ãû³Æ
-	private String goodsAs;// ¹Ø¼ü×Ö
-	private String goodsLabel;// ÉÌÆ·±êÇ©
-	private String goodsDesc;// ÉÌÆ·ÏêÇé
-	private double goodsPrice;// ¼Û¸ñ
-	private double goodsDiscount; // ÕÛ¿Û
-	private String goodsSource;// ·¢»õÀ´Ô´
-	private int userId;// ÓÃ»§id
-	private int goodsStatus;// ×´Ì¬
-	private String createTime;// ´´½¨Ê±¼ä
+	private int categoryId;// åˆ†ç±»id
+	private String goodsName;// å•†å“åç§°
+	private String goodsAs;// å…³é”®å­—
+	private String goodsLabel;// æ ‡ç­¾
+	private String goodsDesc;// è¯¦æƒ…
+	private BigDecimal goodsPrice;// ä»·æ ¼
+	private double goodsDiscount; // æŠ˜æ‰£
+	private String goodsSource;// å‘è´§æ¥æº
+	private int userId;// ç”¨æˆ·id
+	private int goodsStatus;// çŠ¶æ€×´Ì¬
+	private String createTime;// åˆ›å»ºæ—¶é—´
 
 	@Override
 	public String toString() {
@@ -76,11 +81,11 @@ public class GoodsList {
 		this.goodsDesc = goodsDesc;
 	}
 
-	public double getGoodsPrice() {
+	public BigDecimal getGoodsPrice() {
 		return goodsPrice;
 	}
 
-	public void setGoodsPrice(double goodsPrice) {
+	public void setGoodsPrice(BigDecimal goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
 

@@ -67,15 +67,15 @@
 				<ul
 					class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 					<!-- Expand-->
-					<li class="nav-item d-flex align-items-center full_scr_exp"><a
+					<!-- <li class="nav-item d-flex align-items-center full_scr_exp"><a
 						class="nav-link" href="#"><img src="img/expand.png"
 							onclick="toggleFullScreen(document.body)" class="img-fluid"
-							alt=""></a></li>
+							alt=""></a></li> -->
 					<!-- Search-->
-					<li class="nav-item d-flex align-items-center"><a id="search"
-						class="nav-link" href="#"><i class="icon-search"></i></a></li>
+					<!-- <li class="nav-item d-flex align-items-center"><a id="search"
+						class="nav-link" href="#"><i class="icon-search"></i></a></li> -->
 					<!-- Notifications-->
-					<li class="nav-item dropdown"><a id="notifications"
+					<!-- <li class="nav-item dropdown"><a id="notifications"
 						class="nav-link" rel="nofollow" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 							class="fa fa-bell-o"></i><span class="noti-numb-bg"></span><span
@@ -128,9 +128,9 @@
 							<li><a rel="nofollow" href="#"
 								class="dropdown-item all-notifications text-center"> <strong>view
 										all notifications </strong></a></li>
-						</ul></li>
+						</ul></li> -->
 					<!-- Messages                        -->
-					<li class="nav-item dropdown"><a id="messages"
+					<!-- <li class="nav-item dropdown"><a id="messages"
 						class="nav-link logout" rel="nofollow" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 							class="fa fa-envelope-o"></i><span class="noti-numb-bg"></span><span
@@ -169,7 +169,7 @@
 							<li><a rel="nofollow" href="#"
 								class="dropdown-item all-notifications text-center"> <strong>Read
 										all messages </strong></a></li>
-						</ul></li>
+						</ul></li> -->
 					<li class="nav-item dropdown"><a id="profile"
 						class="nav-link logout" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
@@ -177,10 +177,10 @@
 							style="height: 30px; width: 30px;"></a>
 						<ul aria-labelledby="profile" class="dropdown-menu profile">
 							<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-									<div class="msg-profile">
+									<!-- <div class="msg-profile">
 										<img src="img/avatar-1.jpg" alt="..."
 											class="img-fluid rounded-circle">
-									</div>
+									</div> -->
 									<div class="msg-body">
 										<h3 class="h5">Steena Ben</h3>
 										<span>steenaben@Businessbox.com</span>
@@ -348,19 +348,19 @@
 		<!--***** SIDE NAVBAR *****-->
 		<nav class="side-navbar">
 			<div class="sidebar-header d-flex align-items-center">
-				<div class="avatar">
+				<!-- <div class="avatar">
 					<img src="img/avatar-1.jpg" alt="..."
 						class="img-fluid rounded-circle">
-				</div>
+				</div> -->
 				<div class="title">
-					<h1 class="h4">Steena Ben</h1>
+					<h1 class="h4">${sysLogin.username }</h1>
 				</div>
 			</div>
 			<hr>
 
 
 			<!-- Sidebar Navidation Menus-->
-			<ul class="list-unstyled">
+			<!-- <ul class="list-unstyled">
 
 				<li class="active"><a href="index.html"><i
 						class="icon-home"></i>Home</a></li>
@@ -370,50 +370,12 @@
 					<ul id="apps" class="collapse list-unstyled">
 						<li><a href="sys/goodsList/tables">商品例表</a></li>
 						<li><a href="sys/goodsCategory/selectGoodsCategory">商品添加</a></li>
-						<!-- <li><a href="media.html">Media</a></li>
-						<li><a href="invoice.html">Invoice</a></li> -->
+						<li><a href="media.html">Media</a></li>
+						<li><a href="invoice.html">Invoice</a></li>
 					</ul></li>
-				<!-- <li> <a href="index.html"><i class="icon-home"></i>Home</a></li>
-                <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Apps </a>
-                    <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="calendar.html">Calendar</a></li> 
-                        <li><a href="email.html">Email</a></li> 
-                        <li><a href="media.html">Media</a></li> 
-                        <li><a href="invoice.html">Invoice</a></li> 
-                    </ul>
-                </li>
-                <li> <a href="chart.html"> <i class="fa fa-bar-chart"></i>Chart </a></li>
-                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Forms </a>
-                    <ul id="forms" class="collapse list-unstyled">
-                        <li><a href="basic-form.html">Basic Form</a></li> 
-                        <li><a href="form-layouts.html">Form Layouts</a></li> 
-                    </ul>
-                </li>
-                <li> <a href="maps.html"> <i class="fa fa-map-o"></i>Maps </a></li>
-                <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-o"></i>Pages </a>
-                    <ul id="pages" class="collapse list-unstyled">
-                        <li><a href="faq.html">FAQ</a></li> 
-                        <li><a href="empty.html">Empty</a></li> 
-                        <li><a href="gallery.html">Gallery</a></li> 
-                        <li><a href="login.html">Log In</a></li> 
-                        <li><a href="register.html">Register</a></li> 
-                        <li><a href="search-result.html">Search Result</a></li> 
-                        <li><a href="404.html">404</a></li> 
-                    </ul>
-                </li>
-                <li class="active"> <a href="tables.html"> <i class="icon-grid"></i>Tables </a></li> 
-                <li><a href="#elements" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-globe"></i>UI Elements </a>
-                    <ul id="elements" class="collapse list-unstyled">
-                        <li><a href="ui-buttons.html">Buttons</a></li> 
-                        <li><a href="ui-cards.html">Cards</a></li> 
-                        <li><a href="ui-progressbars.html">Progress Bar</a></li> 
-                        <li><a href="ui-timeline.html">Timeline</a></li>  
-                    </ul>
-                </li>
-            </ul><span class="heading">Extras</span>
-            <ul class="list-unstyled"> 
-                <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li> -->
-			</ul>
+			</ul> -->
+
+			<jsp:include page="include/left_nav.jsp"></jsp:include>
 
 
 
@@ -437,15 +399,34 @@
 					</thead>
 					<tbody>
 
-						<c:forEach var="item" items="${message.object }">
+						<c:forEach var="item" items="${message.object }" varStatus="idx">
 							<tr>
-								<th scope="row">${item.goodsId }</th>
+								<th scope="row">
+									<%-- ${item.goodsId } --%>${idx.index }</th>
 								<td>${item.goodsName }</td>
 								<td>${item.goodsDesc }</td>
 								<td>${item.goodsPrice}</td>
 								<td>${item.goodsAs}</td>
-								<td>${item.goodsStatus}</td>
-								<td></td>
+								<td><c:choose>
+										<c:when test="${item.goodsStatus==1}">已上架</c:when>
+										<c:when test="${item.goodsStatus==2}">已下架</c:when>
+										<c:otherwise>未上架</c:otherwise>
+									</c:choose></td>
+								<td>
+									<!-- <button type="submit" class="btn btn-info btn-xs">
+										<a href="sys/goodsList/goodsShelves">商品上架</a>
+									</button> -->
+									<form action="sys/goodsList/goodsShelves">
+										<input type="hidden" value="${item.goodsId}" name="goodsId">
+										<input type="hidden" value="1" name="status">
+										<button type="submit" class="btn btn-info btn-xs">商品上架</button>
+									</form>
+									<form action="sys/goodsList/goodsShelves">
+										<input type="hidden" value="${item.goodsId}" name="goodsId">
+										<input type="hidden" value="2" name="status">
+										<button type="submit" class="btn btn-info btn-xs">商品下架</button>
+									</form>
+								</td>
 							</tr>
 						</c:forEach>
 						<!-- <tr>

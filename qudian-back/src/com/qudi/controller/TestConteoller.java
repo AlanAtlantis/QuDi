@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.qudi.service.GoodsCategoryDaoService;
-
+/**
+ * 
+ * @author AlanAtlantis
+ *
+ */
 @Controller
 @RequestMapping("/sys")
 public class TestConteoller {

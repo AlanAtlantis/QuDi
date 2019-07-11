@@ -72,15 +72,15 @@
 				<ul
 					class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 					<!-- Expand-->
-					<li class="nav-item d-flex align-items-center full_scr_exp"><a
+					<!-- <li class="nav-item d-flex align-items-center full_scr_exp"><a
 						class="nav-link" href="#"><img src="img/expand.png"
 							onclick="toggleFullScreen(document.body)" class="img-fluid"
-							alt=""></a></li>
+							alt=""></a></li> -->
 					<!-- Search-->
-					<li class="nav-item d-flex align-items-center"><a id="search"
-						class="nav-link" href="#"><i class="icon-search"></i></a></li>
+					<!-- <li class="nav-item d-flex align-items-center"><a id="search"
+						class="nav-link" href="#"><i class="icon-search"></i></a></li> -->
 					<!-- Notifications-->
-					<li class="nav-item dropdown"><a id="notifications"
+					<!-- <li class="nav-item dropdown"><a id="notifications"
 						class="nav-link" rel="nofollow" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 							class="fa fa-bell-o"></i><span class="noti-numb-bg"></span><span
@@ -133,9 +133,9 @@
 							<li><a rel="nofollow" href="#"
 								class="dropdown-item all-notifications text-center"> <strong>view
 										all notifications </strong></a></li>
-						</ul></li>
+						</ul></li> -->
 					<!-- Messages                        -->
-					<li class="nav-item dropdown"><a id="messages"
+					<!-- <li class="nav-item dropdown"><a id="messages"
 						class="nav-link logout" rel="nofollow" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 							class="fa fa-envelope-o"></i><span class="noti-numb-bg"></span><span
@@ -174,7 +174,7 @@
 							<li><a rel="nofollow" href="#"
 								class="dropdown-item all-notifications text-center"> <strong>Read
 										all messages </strong></a></li>
-						</ul></li>
+						</ul></li> -->
 					<li class="nav-item dropdown"><a id="profile"
 						class="nav-link logout" data-target="#" href="#"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
@@ -182,10 +182,10 @@
 							style="height: 30px; width: 30px;"></a>
 						<ul aria-labelledby="profile" class="dropdown-menu profile">
 							<li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-									<div class="msg-profile">
+									<!-- <div class="msg-profile">
 										<img src="img/avatar-1.jpg" alt="..."
 											class="img-fluid rounded-circle">
-									</div>
+									</div> -->
 									<div class="msg-body">
 										<h3 class="h5">Steena Ben</h3>
 										<span>steenaben@Businessbox.com</span>
@@ -353,61 +353,16 @@
 		<!--***** SIDE NAVBAR *****-->
 		<nav class="side-navbar">
 			<div class="sidebar-header d-flex align-items-center">
-				<div class="avatar">
+				<!-- <div class="avatar">
 					<img src="img/avatar-1.jpg" alt="..."
 						class="img-fluid rounded-circle">
-				</div>
+				</div> -->
 				<div class="title">
-					<h1 class="h4">Steena Ben</h1>
+					<h1 class="h4">${sysLogin.username }</h1>
 				</div>
 			</div>
 			<hr>
-			<!-- Sidebar Navidation Menus-->
-			<ul class="list-unstyled">
-				<li><a href="index.html"><i class="icon-home"></i>Home</a></li>
-				<li><a href="#apps" aria-expanded="false"
-					data-toggle="collapse"> <i class="icon-interface-windows"></i>商品管理
-				</a>
-					<ul id="apps" class="collapse list-unstyled">
-						<li><a href="sys/goodsList/tables">商品列表</a></li>
-						<li><a href="sys/goodsCategory/selectGoodsCategory">上传商品</a></li>
-
-					</ul></li>
-				<!-- <li><a href="chart.html"> <i class="fa fa-bar-chart"></i>Chart
-				</a></li>
-				<li><a href="#forms" aria-expanded="false"
-					data-toggle="collapse"> <i class="fa fa-building-o"></i>Forms
-				</a>
-					<ul id="forms" class="collapse list-unstyled">
-						<li><a href="basic-form.html">Basic Form</a></li>
-						<li><a href="form-layouts.html">Form Layouts</a></li>
-					</ul></li>
-				<li><a href="maps.html"> <i class="fa fa-map-o"></i>Maps
-				</a></li>
-				<li class="active"><a href="#pages" aria-expanded="false"
-					data-toggle="collapse"> <i class="fa fa-file-o"></i>Pages
-				</a>
-					<ul id="pages" class="collapse list-unstyled">
-						<li><a href="faq.html">FAQ</a></li>
-						<li><a href="empty.html">Empty</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
-						<li><a href="login.html">Log In</a></li>
-						<li class="active"><a href="register.html">Register</a></li>
-						<li><a href="search-result.html">Search Result</a></li>
-						<li><a href="404.html">404</a></li>
-					</ul></li>
-				<li><a href="tables.html"> <i class="icon-grid"></i>Tables
-				</a></li>
-				<li><a href="#elements" aria-expanded="false"
-					data-toggle="collapse"> <i class="fa fa-globe"></i>UI Elements
-				</a>
-					<ul id="elements" class="collapse list-unstyled">
-						<li><a href="ui-buttons.html">Buttons</a></li>
-						<li><a href="ui-cards.html">Cards</a></li>
-						<li><a href="ui-progressbars.html">Progress Bar</a></li>
-						<li><a href="ui-timeline.html">Timeline</a></li>
-					</ul></li> -->
-			</ul>
+			<jsp:include page="include/left_nav.jsp"></jsp:include>
 			<span class="heading">Extras</span>
 			<ul class="list-unstyled">
 				<li><a href="#"> <i class="icon-picture"></i>Demo
@@ -432,7 +387,7 @@
 							</h3>
 						</div>
 						<br>
-						<form action="sys/goodsList/add">
+						<form action="sys/goodsList/add" id="form">
 							<div class="row" id="goodsInfo">
 								<div class="col-md-6">
 									<div class="form-group">
@@ -445,7 +400,8 @@
 											class="form-control" name="goodsAs"
 											aria-describedby="emailHelp">
 									</div>
-									<input type="hidden" value="${categoryId }">
+									<input type="hidden" value="${categoryId }" name="categoryId">
+									<input type="hidden" value="${shopId }" name="shopId">
 									<div class="form-group">
 										<label for="name">标签</label> <input type="text"
 											class="form-control" name="goodsLabel"
@@ -453,7 +409,7 @@
 									</div>
 									<div class="form-group">
 										<label for="name">价格</label> <input type="text"
-											class="form-control" name="goodsPrice"
+											class="form-control" name="goodsPrice" id="goodsPrice"
 											aria-describedby="emailHelp">
 									</div>
 									<div class="form-group">
@@ -463,28 +419,37 @@
 									</div>
 
 									<div class="form-group">
-										<label for="name">商品详情</label>
+										<label for="name">商品详情</label> <input type="text"
+											class="form-control" name="goodsDesc"
+											aria-describedby="emailHelp">
+									</div>
+
+									<div class="form-group" id="">
+										<label for="name">描述</label>
 										<!-- 		  <TEXTAREA id="goodsDesc" name="goodsDesc"></TEXTAREA>  -->
 
 										<!-- <textarea name="goodsDesc" id="goodsDesc"
 											style="width: 500px; height: 200px;"></textarea> -->
 										<div>
-											<script id="goodsDesc" type="text/plain"></script>
+											<script id="detailsDescribe" name="detailsDescribe"
+												type="text/plain"></script>
 										</div>
 										<!-- <input type="text"
 											class="form-control" name="goodsDesc"
 											aria-describedby="emailHelp"> -->
-									</div>
-									<div class="form-group">
-										<label for="name">添加商品图片</label> <input id="uploadFileInput"
-											type="file" size="45" name="uploadFileInput" class="input" />
-										<input type="button" id="buttonUpload"
-											onclick="return ajaxFileUpload();" value="上传图片" />
 
-										<div id="result" style="FONT: 12px 宋体"></div>
-										<br />
-										<%-- <jsp:include page="upload.jsp"></jsp:include> --%>
 									</div>
+									<%-- <div class="form-group">
+										<label for="name">添加商品图片</label> <img alt=""
+											id="businessLicenceuploadImage" src=""
+											style="width: 150px; height: 160px;"><input type="file"
+											id="businessLicenceImage" name="files" class="file"
+											onChange="ajaxFileUploads('businessLicenceImage','businessLicenceuploadImage','businessLicenceNumberElectronic');" /></a>
+										<input type="hidden" class="text w200"
+											name="businessLicenceNumberElectronic"
+											id="businessLicenceNumberElectronic" /> <br />
+										<jsp:include page="upload.jsp"></jsp:include>
+									</div> --%>
 								</div>
 								<div class="col-md-6" id="goods-info">
 									<!-- <div class="form-group">
@@ -521,24 +486,73 @@
 		src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/chart.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/front.js"></script>
+	<script src="${pageContext.request.contextPath}/js/front.js"></script>
 	<script src="${pageContext.request.contextPath}/js/ajaxfileupload.js"></script>
+
+	<script type="text/javascript">
+		$("#form")
+				.submit(
+						function() {
+							var goodsName = $("#goodsName").val();
+							var goodsPrice = $("#goodsPrice").val();
+							//获取富文本的值
+							var str = UE.getEditor('detailsDescribe')
+									.getContent();
+							if (goodsName.length <= 0) {
+								console.log("goodsName为空");
+								$(".sys-infor").remove();
+								$("#goodsName")
+										.after(
+												"<p class='sys-infor' style='color: #ea0a0a;'>必须输入商品名称</p>");
+								return false;
+							}
+							if (goodsPrice.length <= 0) {
+								console.log("goodsPrice为空");
+								$(".sys-infor").remove();
+								$("#goodsPrice")
+										.after(
+												"<p class='sys-infor' style='color: #ea0a0a;'>商品价格必须输入</p>");
+								return false;
+							}
+							if (str.length <= 0) {
+								console.log("商品描述为空");
+								$(".sys-infor").remove();
+								$("#detailsDescribe")
+										.after(
+												"<p class='sys-infor' style='color: #ea0a0a;'>商品描述必须输入</p>");
+								return false;
+							}
+							return true;
+						})
+	</script>
 
 	<!--Core Javascript -->
 
 	<!-- 百度富文本 -->
-	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.all.min.js">
+	<script type="text/javascript" charset="utf-8"
+		src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${pageContext.request.contextPath}/thirdparts/ueditor/ueditor.all.min.js">
 		
 	</script>
 
-	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/thirdparts/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="${pageContext.request.contextPath}/thirdparts/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 	<script type="text/javascript">
-		var ue = UE.getEditor('goodsDesc');
+		var ue = UE.getEditor('detailsDescribe');
+		//根据不同action上传图片和附件
+		UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+		UE.Editor.prototype.getActionUrl = function(action) {
+			if (action == 'uploadimage') {
+				return '${pageContext.request.contextPath}/sys/upload/uploadimage';
+			} else if (action == 'uploadfile') {
+				return '${pageContext.request.contextPath}/upload/uploadfile';
+			} else {
+				return this._bkGetActionUrl.call(this, action);
+			}
+		}
 	</script>
-
-
-	
 
 
 	<script>

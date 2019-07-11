@@ -6,10 +6,15 @@ import org.apache.ibatis.annotations.Param;
 
 import com.qudi.bean.GoodsList;
 
+/**
+ * 
+ * @author AlanAtlantis
+ *
+ */
 public interface GoodsListDao {
 
 	/**
-	 * Ìí¼ÓÉÌÆ·
+	 * æ·»åŠ å•†å“
 	 * 
 	 * @param goods
 	 * @return
@@ -17,18 +22,49 @@ public interface GoodsListDao {
 	int add(GoodsList goods);
 
 	/**
-	 * Ìí¼ÓÉÌÆ·ÓëµêÆÌµÄ¹ØÏµ
+	 * æ·»åŠ å•†å“ä¸ç”¨æˆ·å…³ç³»
 	 * 
 	 * @return
 	 */
 	int addShop2Goods(@Param("shopId") int shopId, @Param("goodsId") int goodsId);
 
 	/**
-	 * ²éÑ¯ÓÃ»§ËùÓĞÉÌÆ·ÁĞ±í
+	 * æŸ¥è¯¢å•†å“é›†åˆ
 	 * 
 	 * @param userId
 	 * @return
 	 */
 	List<GoodsList> selectGoodsList(@Param("userId") int userId);
 
+	/**
+	 * ä¿®æ”¹å•†å“çŠ¶æ€
+	 * 
+	 * @param status
+	 * @return
+	 */
+	int goodsShelves(@Param("status") int status, @Param("goodsId") int goodsId);
+
+	/**
+	 * ä¿®æ”¹å•†å“
+	 * 
+	 * @param goodsList
+	 * @return
+	 */
+	int updateGoods(GoodsList goodsList);
+
+	/**
+	 * æŸ¥è¯¢å•†å“
+	 * 
+	 * @param goodsId
+	 * @return
+	 */
+	GoodsList selectGoodsId(@Param("goodsId") int goodsId);
+
+	/**
+	 * 
+	 * æŸ¥è¯¢æŒ‡å®š
+	 * 
+	 * @return
+	 */
+	List<GoodsList> goodsCategory(@Param("userId") int userId);
 }

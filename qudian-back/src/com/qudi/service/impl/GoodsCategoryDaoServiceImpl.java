@@ -12,7 +12,11 @@ import com.qudi.dao.GoodsCategoryDao;
 import com.qudi.service.GoodsCategoryDaoService;
 import com.qudi.util.MessageUtil;
 import com.qudi.util.Result;
-
+/**
+ * 
+ * @author AlanAtlantis
+ *
+ */
 @Service
 public class GoodsCategoryDaoServiceImpl implements GoodsCategoryDaoService {
 
@@ -23,6 +27,7 @@ public class GoodsCategoryDaoServiceImpl implements GoodsCategoryDaoService {
 
 		MessageUtil message = new MessageUtil();
 		message.setObject(goodsCategoryDao.selectGoodsCategory());
+		System.out.println("----------------------------->>>>>>>>>>>>>>>>>>>>>>" + message.getObject());
 		message.setResult(Result.SUCCEED);
 		System.out.println(message.getObject());
 
